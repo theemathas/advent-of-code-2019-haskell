@@ -6,8 +6,15 @@ extra-source-files:
 
 dependencies:
   - base >= 4.7 && < 5
+  - relude
+
+ghc-options: -Wall -Wextra
+
+default-extensions:
+  - NoImplicitPrelude
+  - OverloadedStrings
 
 executables:
-  aoc2019-haskell-exe:
-    main: Dummy.hs
+  q1-1:
+    main: q1/Part1.hs
     source-dirs: src
