@@ -1,0 +1,23 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 61324c75095f9673f92c3544f68fd88b99890411a9d952fccc7927fadedf6202
+
+name:           aoc2019-haskell
+version:        0.1.0.0
+build-type:     Simple
+extra-source-files:
+    README.md
+
+executable aoc2019-haskell-exe
+  main-is: Dummy.hs
+  other-modules:
+      Paths_aoc2019_haskell
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010

@@ -1,0 +1,13 @@
+name: aoc2019-haskell
+version: 0.1.0.0
+
+extra-source-files:
+  - README.md
+
+dependencies:
+  - base >= 4.7 && < 5
+
+executables:
+  aoc2019-haskell-exe:
+    main: Dummy.hs
+    source-dirs: src
