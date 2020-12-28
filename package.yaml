@@ -7,6 +7,8 @@ extra-source-files:
 dependencies:
   - base >= 4.7 && < 5
   - relude
+  - text
+  - containers
 
 ghc-options: -Wall -Wextra
 
@@ -20,4 +22,10 @@ executables:
     source-dirs: src
   q1-2:
     main: q1/Part2.hs
+    source-dirs: src
+  q2-1:
+    main: q2/Part1.hs
+    source-dirs: src
+  q2-2:
+    main: q2/Part2.hs
     source-dirs: src
