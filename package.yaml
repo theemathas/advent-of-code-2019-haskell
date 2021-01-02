@@ -9,6 +9,7 @@ dependencies:
   - relude
   - text
   - containers
+  - parsec
 
 ghc-options: -Wall -Wextra
 
@@ -28,4 +29,10 @@ executables:
     source-dirs: src
   q2-2:
     main: q2/Part2.hs
+    source-dirs: src
+  q3-1:
+    main: q3/Part1.hs
+    source-dirs: src
+  q3-2:
+    main: q3/Part2.hs
     source-dirs: src

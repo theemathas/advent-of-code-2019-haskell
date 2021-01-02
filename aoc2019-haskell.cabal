@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: ee001be87bff26e06330b6d94bd75e88d7811f5bc34ed84b9d833a2eedb6809c
+-- hash: 4dd6c28ab93c04877eded48873336b7dd6f480183091ee2cd8e8a316566cbee7
 
 name:           aoc2019-haskell
 version:        0.1.0.0
@@ -15,6 +15,7 @@ extra-source-files:
 executable q1-1
   main-is: q1/Part1.hs
   other-modules:
+      MyPrelude
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
@@ -23,6 +24,7 @@ executable q1-1
   build-depends:
       base >=4.7 && <5
     , containers
+    , parsec
     , relude
     , text
   default-language: Haskell2010
@@ -30,6 +32,7 @@ executable q1-1
 executable q1-2
   main-is: q1/Part2.hs
   other-modules:
+      MyPrelude
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
@@ -38,6 +41,7 @@ executable q1-2
   build-depends:
       base >=4.7 && <5
     , containers
+    , parsec
     , relude
     , text
   default-language: Haskell2010
@@ -45,6 +49,7 @@ executable q1-2
 executable q2-1
   main-is: q2/Part1.hs
   other-modules:
+      MyPrelude
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
@@ -53,6 +58,7 @@ executable q2-1
   build-depends:
       base >=4.7 && <5
     , containers
+    , parsec
     , relude
     , text
   default-language: Haskell2010
@@ -60,6 +66,7 @@ executable q2-1
 executable q2-2
   main-is: q2/Part2.hs
   other-modules:
+      MyPrelude
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
@@ -68,6 +75,41 @@ executable q2-2
   build-depends:
       base >=4.7 && <5
     , containers
+    , parsec
+    , relude
+    , text
+  default-language: Haskell2010
+
+executable q3-1
+  main-is: q3/Part1.hs
+  other-modules:
+      MyPrelude
+      Paths_aoc2019_haskell
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude OverloadedStrings
+  ghc-options: -Wall -Wextra
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , parsec
+    , relude
+    , text
+  default-language: Haskell2010
+
+executable q3-2
+  main-is: q3/Part2.hs
+  other-modules:
+      MyPrelude
+      Paths_aoc2019_haskell
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude OverloadedStrings
+  ghc-options: -Wall -Wextra
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , parsec
     , relude
     , text
   default-language: Haskell2010
