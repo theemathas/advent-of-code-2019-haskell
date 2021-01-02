@@ -36,3 +36,9 @@ executables:
   q3-2:
     main: q3/Part2.hs
     source-dirs: src
+  q4-1:
+    main: q4/Part1.hs
+    source-dirs: src
+  q4-2:
+    main: q4/Part2.hs
+    source-dirs: src
