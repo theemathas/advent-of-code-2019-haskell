@@ -31,7 +31,7 @@ parseInput = (parseLine `endBy` newline) <* eof
     parseLine = parseSegment `sepBy1` char ','
     parseSegment = do
       direction <- choice [char 'U' $> U, char 'D' $> D, char 'L' $> L, char 'R' $> R]
-      number <- decimal
+      number <- unsignedDecimal
       return (direction, number)
 
 coordinatesInPath :: [(Direction, Integer)] -> [Coordinate]
