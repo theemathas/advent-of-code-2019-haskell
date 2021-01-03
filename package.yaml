@@ -54,3 +54,9 @@ executables:
   q6-2:
     main: q6/Part2.hs
     source-dirs: src
+  q7-1:
+    main: q7/Part1.hs
+    source-dirs: src
+  q7-2:
+    main: q7/Part2.hs
+    source-dirs: src
