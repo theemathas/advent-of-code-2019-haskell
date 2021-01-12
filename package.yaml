@@ -16,6 +16,9 @@ ghc-options: -Wall -Wextra
 default-extensions:
   - NoImplicitPrelude
   - OverloadedStrings
+  - FlexibleInstances
+  - MultiParamTypeClasses
+  - UndecidableInstances
 
 executables:
   q1-1:

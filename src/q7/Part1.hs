@@ -59,7 +59,7 @@ setProgramCounter :: Integer -> Interpreter ()
 setProgramCounter value = modify $ \interpreterState -> interpreterState {programCounter = value}
 
 advanceProgramCounter :: Integer -> Interpreter ()
-advanceProgramCounter value = setProgramCounter =<< ((value +) <$> getProgramCounter)
+advanceProgramCounter value = (setProgramCounter . (value +)) =<< getProgramCounter
 
 getNextInput :: Interpreter Integer
 getNextInput = do

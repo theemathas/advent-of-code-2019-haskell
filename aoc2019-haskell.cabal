@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 58e72eeb9a2759877dc2c540842e6a31ce50c684aa371347e3c340d465b6dbc0
+-- hash: cedfcc0ce7066a0e12535bf0658b9ad9e3e7ad71c5cc8c4b9e75a3599b716486
 
 name:           aoc2019-haskell
 version:        0.1.0.0
@@ -16,10 +16,11 @@ executable q1-1
   main-is: q1/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -33,10 +34,11 @@ executable q1-2
   main-is: q1/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -50,10 +52,11 @@ executable q2-1
   main-is: q2/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -67,10 +70,11 @@ executable q2-2
   main-is: q2/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -84,10 +88,11 @@ executable q3-1
   main-is: q3/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -101,10 +106,11 @@ executable q3-2
   main-is: q3/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -118,10 +124,11 @@ executable q4-1
   main-is: q4/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -135,10 +142,11 @@ executable q4-2
   main-is: q4/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -152,10 +160,11 @@ executable q5-1
   main-is: q5/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -169,10 +178,11 @@ executable q5-2
   main-is: q5/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -186,10 +196,11 @@ executable q6-1
   main-is: q6/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -203,10 +214,11 @@ executable q6-2
   main-is: q6/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -220,10 +232,11 @@ executable q7-1
   main-is: q7/Part1.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
@@ -237,10 +250,11 @@ executable q7-2
   main-is: q7/Part2.hs
   other-modules:
       MyPrelude
+      Pipes
       Paths_aoc2019_haskell
   hs-source-dirs:
       src
-  default-extensions: NoImplicitPrelude OverloadedStrings
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
   ghc-options: -Wall -Wextra
   build-depends:
       base >=4.7 && <5
