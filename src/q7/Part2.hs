@@ -5,7 +5,7 @@ import Data.List (foldl1', maximum)
 import Data.Sequence (update, (!?), (|>))
 import qualified Data.Sequence as S
 import MyPrelude
-import Pipes (Pipe (..), await, evalStateP, yield, (>->))
+import Pipes (Pipe (..), await, evalStateP, feed, yield, (>->))
 import Relude.Unsafe (fromJust)
 import Text.Parsec (char, eof, newline, sepBy)
 
@@ -41,14 +41,6 @@ evaluatePhaseSequence program phases = go empty combinedAmplifier
     go queue (PipeOut outValue pipe) = go (queue |> outValue) pipe
     go queue (PipeM m) = go queue =<< m
     go queue (PipePure ()) = Just (fromJust (queue !? 0))
-
--- Provide one input as the first input to a pipe
-feed :: Functor m => i -> Pipe i o m a -> Pipe i o m a
-feed x (PipeIn inFunc) = inFunc x
-feed x (PipeOut outValue pipe) = PipeOut outValue (feed x pipe)
-feed x (PipeM m) = PipeM (feed x <$> m)
--- If input provided while pipe doesn't take input, drop the input.
-feed _ (PipePure y) = PipePure y
 
 --------------------------------------------------
 -- Main intcode implementation

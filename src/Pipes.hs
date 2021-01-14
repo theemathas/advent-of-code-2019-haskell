@@ -6,6 +6,7 @@ module Pipes
   ( Pipe (..),
     yield,
     await,
+    feed,
     (>->),
     evalStateP,
     runStateP,
@@ -61,6 +62,14 @@ yield outValue = PipeOut outValue (PipePure ())
 
 await :: Pipe i o m i
 await = PipeIn $ \inValue -> PipePure inValue
+
+-- Provide one input as the first input to a pipe
+feed :: Functor m => i -> Pipe i o m a -> Pipe i o m a
+feed x (PipeIn inFunc) = inFunc x
+feed x (PipeOut outValue pipe) = PipeOut outValue (feed x pipe)
+feed x (PipeM m) = PipeM (feed x <$> m)
+-- If input provided while pipe doesn't take input, drop the input.
+feed _ (PipePure y) = PipePure y
 
 (>->) :: Functor m => Pipe a b m () -> Pipe b c m () -> Pipe a c m ()
 pipe >-> pipe'@(PipeIn inFunc') = case pipe of
