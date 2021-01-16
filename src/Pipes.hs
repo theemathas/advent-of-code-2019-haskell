@@ -7,6 +7,7 @@ module Pipes
     yield,
     await,
     feed,
+    getOutputs,
     (>->),
     evalStateP,
     runStateP,
@@ -70,6 +71,15 @@ feed x (PipeOut outValue pipe) = PipeOut outValue (feed x pipe)
 feed x (PipeM m) = PipeM (feed x <$> m)
 -- If input provided while pipe doesn't take input, drop the input.
 feed _ (PipePure y) = PipePure y
+
+-- If the pipe doesn't just output a bunch of values then terminates, return Nothing.
+getOutputs :: Monad m => Pipe i o m () -> m (Maybe [o])
+getOutputs (PipeIn _) = return Nothing
+getOutputs (PipeOut outValue pipe) = do
+  remainingOutValues <- getOutputs pipe
+  return $ fmap (outValue :) remainingOutValues
+getOutputs (PipeM m) = m >>= getOutputs
+getOutputs (PipePure ()) = return (Just [])
 
 (>->) :: Functor m => Pipe a b m () -> Pipe b c m () -> Pipe a c m ()
 pipe >-> pipe'@(PipeIn inFunc') = case pipe of
