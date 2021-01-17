@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0edd0a4762d549461b294b1129932c138c9bab4b26fae3a342c3dedc36d1a2ce
+-- hash: 1610c570ee3c82408ad664f0a871db4334abda3e9ca76af3a775b7bf77877c39
 
 name:           aoc2019-haskell
 version:        0.1.0.0
@@ -68,6 +68,42 @@ executable q10-1
 
 executable q10-2
   main-is: q10/Part2.hs
+  other-modules:
+      MyPrelude
+      Pipes
+      Paths_aoc2019_haskell
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
+  ghc-options: -Wall -Wextra
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , parsec
+    , relude
+    , text
+  default-language: Haskell2010
+
+executable q11-1
+  main-is: q11/Part1.hs
+  other-modules:
+      MyPrelude
+      Pipes
+      Paths_aoc2019_haskell
+  hs-source-dirs:
+      src
+  default-extensions: NoImplicitPrelude OverloadedStrings FlexibleInstances MultiParamTypeClasses UndecidableInstances
+  ghc-options: -Wall -Wextra
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , parsec
+    , relude
+    , text
+  default-language: Haskell2010
+
+executable q11-2
+  main-is: q11/Part2.hs
   other-modules:
       MyPrelude
       Pipes

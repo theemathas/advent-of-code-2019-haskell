@@ -81,3 +81,9 @@ executables:
   q10-2:
     main: q10/Part2.hs
     source-dirs: src
+  q11-1:
+    main: q11/Part1.hs
+    source-dirs: src
+  q11-2:
+    main: q11/Part2.hs
+    source-dirs: src
