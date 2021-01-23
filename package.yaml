@@ -9,6 +9,7 @@ dependencies:
   - relude
   - text
   - containers
+  - unordered-containers
   - parsec
 
 ghc-options: -Wall -Wextra
@@ -19,6 +20,7 @@ default-extensions:
   - FlexibleInstances
   - MultiParamTypeClasses
   - UndecidableInstances
+  - DeriveGeneric
 
 executables:
   q1-1:
@@ -86,4 +88,10 @@ executables:
     source-dirs: src
   q11-2:
     main: q11/Part2.hs
+    source-dirs: src
+  q12-1:
+    main: q12/Part1.hs
+    source-dirs: src
+  q12-2:
+    main: q12/Part2.hs
     source-dirs: src
