@@ -1,10 +1,16 @@
-import qualified Data.HashSet as HS
+import Control.Exception (assert)
+import qualified Data.HashMap.Strict as HM
 import MyPrelude
 import Text.Parsec (endBy, eof, newline, string)
 
 -- TODO make this fast enough.
 
-data Moon = Moon {getPosition :: Vector, getVelocity :: Vector}
+data MoonAxis = MoonAxis {getPosition :: Integer, getVelocity :: Integer}
+  deriving (Show, Eq, Generic)
+
+instance Hashable MoonAxis
+
+data Moon = Moon {getX :: MoonAxis, getY :: MoonAxis, getZ :: MoonAxis}
   deriving (Show, Eq, Generic)
 
 instance Hashable Moon
@@ -12,8 +18,15 @@ instance Hashable Moon
 main :: IO ()
 main = do
   initialMoons <- parseFromFileOrError parseInput "src/q12/input.txt"
-  let moonSteps = iterate step initialMoons
-  print $ findRepeat moonSteps
+  let xRepeat = findRepeat $ iterate stepMoonAxes $ map getX initialMoons
+  let yRepeat = findRepeat $ iterate stepMoonAxes $ map getY initialMoons
+  let zRepeat = findRepeat $ iterate stepMoonAxes $ map getZ initialMoons
+  -- In our data, the repeat seems to always happen by going back to the initial
+  -- configuration. This simplifies the computation a bit.
+  assert (fst xRepeat == 0) (return ())
+  assert (fst yRepeat == 0) (return ())
+  assert (fst zRepeat == 0) (return ())
+  print $ foldl' lcm 1 $ map snd [xRepeat, yRepeat, zRepeat]
 
 parseInput :: Parser [Moon]
 parseInput = (parseMoon `endBy` newline) <* eof
@@ -23,44 +36,31 @@ parseInput = (parseMoon `endBy` newline) <* eof
       y <- string ", y=" >> decimal
       z <- string ", z=" >> decimal
       _ <- string ">"
-      return $ Moon (Vector x y z) zeroVector
+      return $ Moon (MoonAxis x 0) (MoonAxis y 0) (MoonAxis z 0)
 
-findRepeat :: (Hashable a, Eq a) => [a] -> Integer
-findRepeat = go HS.empty
+-- Returns (index1, index2) where element at index1 is equal to element at index2
+findRepeat :: (Hashable a, Eq a) => [a] -> (Integer, Integer)
+findRepeat = go HM.empty 0
   where
-    go :: (Hashable a, Eq a) => HashSet a -> [a] -> Integer
-    go visited (x : xs)
-      | HS.member x visited = 0
-      | otherwise = 1 + go (HS.insert x visited) xs
-    go _ [] = error "Ran out of elements"
+    -- visited maps state -> index
+    go :: (Hashable a, Eq a) => HashMap a Integer -> Integer -> [a] -> (Integer, Integer)
+    go visited currentIndex (x : xs) =
+      case HM.lookup x visited of
+        Just previousIndex -> (previousIndex, currentIndex)
+        Nothing -> go (HM.insert x currentIndex visited) (currentIndex + 1) xs
+    go _ _ [] = error "Ran out of elements"
 
-step :: [Moon] -> [Moon]
-step moons = map stepMoon moons
+stepMoonAxes :: [MoonAxis] -> [MoonAxis]
+stepMoonAxes moonAxes = map stepOneMoonAxis moonAxes
   where
-    -- Velocity change that the thing at pos' causes on the thing at pos
-    gravityOfPos pos pos' = zipByVector (\a b -> signum (b - a)) pos pos'
+    -- Velocity change that moonAxis' causes on moonAxis
+    gravityOfMoonAxis :: MoonAxis -> MoonAxis -> Integer
+    gravityOfMoonAxis moonAxis moonAxis' = signum (getPosition moonAxis' - getPosition moonAxis)
 
-    gravityOfMoon moon moon' = gravityOfPos (getPosition moon) (getPosition moon')
-
-    stepMoon moon =
-      let gravities = map (gravityOfMoon moon) moons
-          netGravity = foldl' addVectors zeroVector gravities
-          newVelocity = addVectors (getVelocity moon) netGravity
-          newPosition = addVectors (getPosition moon) newVelocity
-       in Moon newPosition newVelocity
-
--- Vectors
-
-data Vector = Vector {getX :: Integer, getY :: Integer, getZ :: Integer}
-  deriving (Show, Eq, Generic)
-
-instance Hashable Vector
-
-zipByVector :: (Integer -> Integer -> Integer) -> Vector -> Vector -> Vector
-zipByVector f (Vector x1 y1 z1) (Vector x2 y2 z2) = Vector (f x1 x2) (f y1 y2) (f z1 z2)
-
-addVectors :: Vector -> Vector -> Vector
-addVectors = zipByVector (+)
-
-zeroVector :: Vector
-zeroVector = Vector 0 0 0
+    stepOneMoonAxis :: MoonAxis -> MoonAxis
+    stepOneMoonAxis moonAxis =
+      let gravities = map (gravityOfMoonAxis moonAxis) moonAxes
+          netGravity = sum gravities
+          newVelocity = getVelocity moonAxis + netGravity
+          newPosition = getPosition moonAxis + newVelocity
+       in MoonAxis newPosition newVelocity
